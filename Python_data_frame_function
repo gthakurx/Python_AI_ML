@@ -1,0 +1,96 @@
+Pandas DataFrames are incredibly versatile and offer a vast array of functions and methods to manipulate, analyze, and clean data. Here's a comprehensive overview of common operations you can perform on a Pandas DataFrame:
+
+### 1. Basic Information and Inspection
+
+*   **`df.head(n)`**: Returns the first `n` rows of the DataFrame. (Default `n=5`)
+*   **`df.tail(n)`**: Returns the last `n` rows of the DataFrame. (Default `n=5`)
+*   **`df.info()`**: Prints a concise summary of the DataFrame, including data types, non-null values, and memory usage.
+*   **`df.shape`**: Returns a tuple representing the dimensions (rows, columns) of the DataFrame.
+*   **`df.size`**: Returns the total number of elements in the DataFrame (rows \* columns).
+*   **`df.columns`**: Returns an Index object containing the column labels.
+*   **`df.index`**: Returns an Index object containing the row labels (index).
+*   **`df.dtypes`**: Returns a Series with the data type of each column.
+*   **`df.describe()`**: Generates descriptive statistics (count, mean, std, min, max, quartiles) for numerical columns.
+*   **`df.value_counts()`**: For a Series (single column), returns a Series containing counts of unique values.
+*   **`df.unique()`**: For a Series, returns an array of unique values in the Series.
+*   **`df.nunique()`**: For a Series or DataFrame, returns the number of unique values.
+
+### 2. Selection and Indexing
+
+*   **`df['column_name']`**: Selects a single column as a Series.
+*   **`df[['col1', 'col2']]`**: Selects multiple columns as a DataFrame.
+*   **`df.loc[row_label, column_label]`**: Label-based indexing for selecting rows and columns.
+    *   `df.loc[0]` (selects row with label 0)
+    *   `df.loc[:, 'col1']` (selects all rows for 'col1')
+    *   `df.loc[0:5, ['col1', 'col2']]` (selects rows 0 to 5 and specified columns)
+*   **`df.iloc[row_index, column_index]`**: Integer-location based indexing for selecting rows and columns.
+    *   `df.iloc[0]` (selects row at index 0)
+    *   `df.iloc[:, 0]` (selects all rows for column at index 0)
+    *   `df.iloc[0:5, 0:2]` (selects rows 0 to 4 and columns 0 to 1)
+*   **Boolean Indexing/Filtering**:
+    *   `df[df['column_name'] > value]` (selects rows where a column meets a condition)
+    *   `df[(df['col1'] > val1) & (df['col2'] == val2)]` (multiple conditions)
+    *   `df[df['column_name'].isin(['val1', 'val2'])]` (selects rows where a column's value is in a list)
+
+### 3. Data Cleaning and Preprocessing
+
+*   **`df.isnull()` / `df.isna()`**: Returns a boolean DataFrame indicating missing values.
+*   **`df.notnull()` / `df.notna()`**: Returns a boolean DataFrame indicating non-missing values.
+*   **`df.dropna(axis=0/1, how='any'/'all', inplace=True)`**: Removes rows or columns with missing values.
+*   **`df.fillna(value, method='ffill'/'bfill', inplace=True)`**: Fills missing values with a specified value or using a forward/backward fill method.
+*   **`df.duplicated()`**: Returns a boolean Series indicating duplicate rows.
+*   **`df.drop_duplicates(subset=None, keep='first'/'last'/False, inplace=True)`**: Removes duplicate rows.
+*   **`df.astype(dtype)`**: Converts a column or DataFrame to a specified data type.
+*   **`pd.to_datetime(series)`**: Converts a Series to datetime objects.
+*   **`pd.to_numeric(series)`**: Converts a Series to numeric type, handling errors.
+
+### 4. Manipulation and Transformation
+
+*   **Adding/Modifying Columns**:
+    *   `df['new_column'] = value`
+    *   `df['new_column'] = df['col1'] + df['col2']` (operating on existing columns)
+    *   `df['new_column'] = df['old_column'].apply(function)` (applying a custom function)
+*   **`df.drop(columns=['col1', 'col2'], inplace=True)`**: Removes specified columns.
+*   **`df.drop(index=[0, 1], inplace=True)`**: Removes specified rows by index.
+*   **`df.rename(columns={'old_name': 'new_name'}, inplace=True)`**: Renames columns.
+*   **`df.sort_values(by='column_name', ascending=True/False, inplace=True)`**: Sorts the DataFrame by one or more columns.
+*   **`df.sort_index(axis=0/1, ascending=True/False, inplace=True)`**: Sorts by index.
+*   **`df.apply(function, axis=0/1)`**: Applies a function along either axis of the DataFrame.
+*   **`df.map(mapping_dict)` / `df.replace(old_value, new_value)`**: Used for element-wise substitution.
+*   **`df.pivot_table()`**: Creates a spreadsheet-style pivot table as a DataFrame.
+*   **`df.melt()`**: Unpivots a DataFrame from wide to long format.
+
+### 5. Aggregation and Grouping
+
+*   **`df.groupby('column_name')`**: Groups the DataFrame by one or more columns.
+    *   After grouping, you can apply aggregation functions: `.mean()`, `.sum()`, `.count()`, `.min()`, `.max()`, `.std()`, `.var()`, `.median()`, `.agg()`.
+    *   `df.groupby('category_col')['value_col'].mean()`
+    *   `df.groupby('category_col').agg({'value_col1': 'sum', 'value_col2': 'mean'})`
+
+### 6. Merging, Joining, and Concatenating
+
+*   **`pd.concat([df1, df2], axis=0/1)`**: Stacks DataFrames vertically (rows) or horizontally (columns).
+*   **`pd.merge(df1, df2, on='key_column', how='inner'/'left'/'right'/'outer')`**: Combines DataFrames based on common columns (like SQL JOINs).
+*   **`df1.join(df2, on='key_column', how='left')`**: Joins DataFrames based on their index or a column in one DataFrame and the index in the other.
+
+### 7. Input/Output (I/O)
+
+*   **`pd.read_csv('file.csv')`**: Reads data from a CSV file.
+*   **`df.to_csv('output.csv', index=False)`**: Writes DataFrame to a CSV file.
+*   **`pd.read_excel('file.xlsx')`**: Reads data from an Excel file.
+*   **`df.to_excel('output.xlsx', index=False)`**: Writes DataFrame to an Excel file.
+*   **`pd.read_sql('SELECT * FROM table', connection)`**: Reads data from a SQL database.
+*   **`df.to_sql('table_name', connection, if_exists='replace'/'append')`**: Writes DataFrame to a SQL database.
+*   **`pd.read_json('file.json')`**: Reads data from a JSON file.
+*   **`df.to_json('output.json')`**: Writes DataFrame to a JSON file.
+
+### 8. Statistical Operations
+
+*   **`df.mean()` / `df.sum()` / `df.min()` / `df.max()` / `df.std()` / `df.var()` / `df.median()`**: Calculates these statistics for each numerical column.
+*   **`df.corr()`**: Computes pairwise correlation of columns.
+*   **`df.cov()`**: Computes pairwise covariance of columns.
+*   **`df.quantile(q=0.5)`**: Returns values at the given quantile(s).
+
+This list covers the most frequently used functions. Pandas has many more specialized functions, but mastering these will allow you to perform a vast majority of data analysis tasks.  
+ 
+
