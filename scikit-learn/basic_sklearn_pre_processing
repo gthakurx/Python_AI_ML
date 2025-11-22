@@ -1,0 +1,204 @@
+Scikit-learn has a **big collection of preprocessing tools** that help clean, transform, scale, encode, and prepare your data before feeding it into ML models.
+
+Here is a clear and organized list:
+
+---
+
+# ✅ **Main Preprocessing Tools in Scikit-Learn**
+
+---
+
+## **1. Scaling / Normalization**
+
+Used to bring all features to similar scales.
+
+### **StandardScaler**
+
+* Makes data with **mean = 0** and **std = 1**
+
+```python
+from sklearn.preprocessing import StandardScaler
+```
+
+### **MinMaxScaler**
+
+* Scales data between **0 and 1**
+
+```python
+from sklearn.preprocessing import MinMaxScaler
+```
+
+### **RobustScaler**
+
+* Good when data has **outliers**
+
+```python
+from sklearn.preprocessing import RobustScaler
+```
+
+### **Normalizer**
+
+* Normalizes each row of data (L1 / L2 norm)
+
+```python
+from sklearn.preprocessing import Normalizer
+```
+
+---
+
+## **2. Encoding Categorical Data**
+
+### **OneHotEncoder**
+
+* Converts categories into 0/1 dummy columns
+
+```python
+from sklearn.preprocessing import OneHotEncoder
+```
+
+### **LabelEncoder**
+
+* Converts categories into integer labels
+  **Only for target (y)**, not for features.
+
+```python
+from sklearn.preprocessing import LabelEncoder
+```
+
+### **OrdinalEncoder**
+
+* Converts ordered categories into integers
+
+```python
+from sklearn.preprocessing import OrdinalEncoder
+```
+
+---
+
+## **3. Handling Missing Values**
+
+### **SimpleImputer**
+
+* Replace missing values with **mean, median, mode**
+
+```python
+from sklearn.impute import SimpleImputer
+```
+
+### **KNNImputer**
+
+* Fills missing values using **K-nearest neighbors**
+
+```python
+from sklearn.impute import KNNImputer
+```
+
+---
+
+## **4. Polynomial & Interaction Features**
+
+### **PolynomialFeatures**
+
+* Generates terms like:
+
+  * x
+  * x²
+  * xy
+  * x²y
+  * etc.
+
+```python
+from sklearn.preprocessing import PolynomialFeatures
+```
+
+### **FunctionTransformer**
+
+* Use your own function to transform data
+
+```python
+from sklearn.preprocessing import FunctionTransformer
+```
+
+---
+
+## **5. Binarization / Thresholding**
+
+### **Binarizer**
+
+* Turns values into 0 or 1 based on threshold
+
+```python
+from sklearn.preprocessing import Binarizer
+```
+
+---
+
+## **6. Discretization (Convert Continuous → Categories)**
+
+### **KBinsDiscretizer**
+
+* Convert numerical features to categorical bins
+
+```python
+from sklearn.preprocessing import KBinsDiscretizer
+```
+
+---
+
+## **7. Feature Selection / Dimensionality Reduction**
+
+### **PCA (Principal Component Analysis)**
+
+* Reduces dimensions while keeping max variance
+
+```python
+from sklearn.decomposition import PCA
+```
+
+### **SelectKBest**
+
+* Selects top K features based on statistical score
+
+```python
+from sklearn.feature_selection import SelectKBest
+```
+
+---
+
+## **8. Pipelines & Column Transformers**
+
+### **Pipeline**
+
+* Chain multiple preprocessing + model steps
+
+```python
+from sklearn.pipeline import Pipeline
+```
+
+### **ColumnTransformer**
+
+* Apply different preprocessing to different columns
+
+```python
+from sklearn.compose import ColumnTransformer
+```
+
+---
+
+# ⭐ Summary (Easy to Remember)
+
+| Task                    | Best Tools                                  |
+| ----------------------- | ------------------------------------------- |
+| Scaling                 | StandardScaler, MinMaxScaler, RobustScaler  |
+| Categorical Encoding    | OneHotEncoder, LabelEncoder, OrdinalEncoder |
+| Missing Values          | SimpleImputer, KNNImputer                   |
+| Add Polynomial Features | PolynomialFeatures                          |
+| Custom Transform        | FunctionTransformer                         |
+| Reduce Dimensions       | PCA                                         |
+| Binning                 | KBinsDiscretizer                            |
+| Build ML workflow       | Pipeline, ColumnTransformer                 |
+
+---
+
+If you want, I can **show practical examples** of each of these with simple code and dataset — just tell me which one you want to understand first!
+
