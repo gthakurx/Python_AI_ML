@@ -202,3 +202,28 @@ from sklearn.compose import ColumnTransformer
 
 If you want, I can **show practical examples** of each of these with simple code and dataset — just tell me which one you want to understand first!
 
+
+
+
+Suppose we have features:
+
+height
+
+weight
+
+age
+
+And target classes:
+
+healthy
+
+diseased
+
+The ANOVA F-test checks:
+
+“Does height differ significantly between healthy vs diseased?”
+“Does weight differ…?”
+“Does age differ…?”
+
+If a feature shows strong differences → kept
+Otherwise → dropped
